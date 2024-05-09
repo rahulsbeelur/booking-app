@@ -18,7 +18,7 @@ func main() {
 	var lastName string
 	var email string
 	var userTickets int
-	var bookingList [50]string
+	bookingList := []string{}
 
 	fmt.Println("Enter your first name")
 	fmt.Scan(&firstName)
@@ -36,8 +36,9 @@ func main() {
 
 	remainingTickets = remainingTickets - userTickets
 
-	bookingList[0] = firstName + " " + lastName
+	bookingList = append(bookingList, firstName + " " + lastName)
 
 	fmt.Printf("We have %v tickets left for the conference", remainingTickets)
+	fmt.Printf("Booking list - %v \n", bookingList)
 
 }
