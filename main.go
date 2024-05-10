@@ -20,25 +20,27 @@ func main() {
 	var userTickets int
 	bookingList := []string{}
 
-	fmt.Println("Enter your first name")
-	fmt.Scan(&firstName)
+	for {
+		fmt.Println("Enter your first name")
+		fmt.Scan(&firstName)
 
-	fmt.Println("Enter your last name")
-	fmt.Scan(&lastName)
+		fmt.Println("Enter your last name")
+		fmt.Scan(&lastName)
 
-	fmt.Println("Enter your email address")
-	fmt.Scan(&email)
+		fmt.Println("Enter your email address")
+		fmt.Scan(&email)
 
-	fmt.Println("Enter number of tickets you want to buy")
-	fmt.Scan(&userTickets)
+		fmt.Println("Enter number of tickets you want to buy")
+		fmt.Scan(&userTickets)
 
-	fmt.Printf("Thank you %v %v for booking %v tickets. You will receive confirmation on - %v \n", firstName, lastName, userTickets, email)
+		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive confirmation on - %v \n", firstName, lastName, userTickets, email)
 
-	remainingTickets = remainingTickets - userTickets
+		remainingTickets = remainingTickets - userTickets
 
-	bookingList = append(bookingList, firstName + " " + lastName)
+		bookingList = append(bookingList, firstName + " " + lastName)
 
-	fmt.Printf("We have %v tickets left for the conference", remainingTickets)
-	fmt.Printf("Booking list - %v \n", bookingList)
+		fmt.Printf("We have %v tickets left for the conference", remainingTickets)
+		fmt.Printf("Booking list - %v \n", bookingList)
+	}
 
 }
