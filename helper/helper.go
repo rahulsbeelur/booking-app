@@ -2,11 +2,11 @@ package helper
 
 import "fmt"
 
-func GetUserInput() (string, string, string, int) {
+func GetUserInput() (string, string, string, uint) {
 	var firstName string
 	var lastName string
 	var email string
-	var userTickets int
+	var userTickets uint
 
 	fmt.Println("Enter your first name")
 	fmt.Scan(&firstName)

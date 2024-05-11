@@ -1,15 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"strings"
 	"booking-app/helper"
+	"fmt"
+	"strconv"
 )
 
 func main() {
 	var conferenceName = "Go Conference"
 	const conferenceTickets = 50
-	var remainingTickets = 50
+	var remainingTickets uint = 50
+	var userData = make(map[string]string)
 	
 	fmt.Printf("conferenceName is %T, conferenceTicket is %T, remainingTickets is %T \n", conferenceName, conferenceTickets, remainingTickets)
 
@@ -17,10 +18,16 @@ func main() {
 	fmt.Printf("We have total %v out of which %v are available \n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here")
 
-	bookingList := []string{}
+	bookingList := make([]map[string]string, 0)
 
 	for {
 		firstName, lastName, email, userTickets := helper.GetUserInput()
+
+		userData["firstName"] = firstName
+		userData["lastName"] = lastName
+		userData["email"] = email
+		userData["noOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+
 		if remainingTickets < userTickets {
 			fmt.Printf("We only have %v tickets left, we cannot book %v tickets for you\n", remainingTickets, userTickets)
 			return
@@ -30,7 +37,7 @@ func main() {
 
 		remainingTickets = remainingTickets - userTickets
 
-		bookingList = append(bookingList, firstName + " " + lastName)
+		bookingList = append(bookingList, userData)
 
 		fmt.Printf("We have %v tickets left for the conference", remainingTickets)
 
@@ -42,15 +49,15 @@ func main() {
 			fmt.Println("Sorry we are house full!")
 			break
 		}
+	fmt.Printf("%v", userData)
 	}
 
 }
 
-func printFirstNames(bookingList []string) []string {
+func printFirstNames(bookingList []map[string]string) []string {
 	firstNames := []string{}
 	for _, booking := range bookingList {
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 	}
 	return firstNames;
 }
