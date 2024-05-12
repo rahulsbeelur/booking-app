@@ -24,3 +24,12 @@ This is a CLI application built while learning the basics of Go.
 - Struct
 - Goroutines - Concurreny in Go
     - WaitGroup
+
+
+## Steps to run
+1. Clone the repo
+2. cd into the repo
+3. run - `go run .`
+
+### Reach out
+[Contact me](https://rahulsbeelur.com/contact)
