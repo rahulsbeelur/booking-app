@@ -3,14 +3,20 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strconv"
 )
+
+type UserData struct {
+	firstName string
+	lastName string
+	email string
+	noOfTickets uint
+}
 
 func main() {
 	var conferenceName = "Go Conference"
 	const conferenceTickets = 50
 	var remainingTickets uint = 50
-	var userData = make(map[string]string)
+	var bookingList = make([]UserData, 0)
 	
 	fmt.Printf("conferenceName is %T, conferenceTicket is %T, remainingTickets is %T \n", conferenceName, conferenceTickets, remainingTickets)
 
@@ -18,15 +24,15 @@ func main() {
 	fmt.Printf("We have total %v out of which %v are available \n", conferenceTickets, remainingTickets)
 	fmt.Println("Get your tickets here")
 
-	bookingList := make([]map[string]string, 0)
-
 	for {
 		firstName, lastName, email, userTickets := helper.GetUserInput()
 
-		userData["firstName"] = firstName
-		userData["lastName"] = lastName
-		userData["email"] = email
-		userData["noOfTickets"] = strconv.FormatUint(uint64(userTickets), 10)
+		var userData = UserData{
+			firstName: firstName,
+			lastName: lastName,
+			email: email,
+			noOfTickets: userTickets,
+		}
 
 		if remainingTickets < userTickets {
 			fmt.Printf("We only have %v tickets left, we cannot book %v tickets for you\n", remainingTickets, userTickets)
@@ -49,15 +55,14 @@ func main() {
 			fmt.Println("Sorry we are house full!")
 			break
 		}
-	fmt.Printf("%v", userData)
 	}
 
 }
 
-func printFirstNames(bookingList []map[string]string) []string {
+func printFirstNames(bookingList []UserData) []string {
 	firstNames := []string{}
 	for _, booking := range bookingList {
-		firstNames = append(firstNames, booking["firstName"])
+		firstNames = append(firstNames, booking.firstName)
 	}
 	return firstNames;
 }
